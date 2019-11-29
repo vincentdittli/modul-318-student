@@ -45,7 +45,6 @@
             this.cmB_From.Size = new System.Drawing.Size(121, 21);
             this.cmB_From.TabIndex = 0;
             this.cmB_From.TextChanged += new System.EventHandler(this.CmB_From_TextChanged);
-            this.cmB_From.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmB_From_KeyPress);
             // 
             // cmB_to
             // 

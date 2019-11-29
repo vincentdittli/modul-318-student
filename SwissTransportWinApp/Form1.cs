@@ -18,17 +18,13 @@ namespace SwissTransportWinApp
             InitializeComponent();
         }
 
-        private void CmB_From_KeyPress(object sender, KeyPressEventArgs e)
-        {
-
-        }
-       
         private void CmB_From_TextChanged(object sender, EventArgs e)
         {
-            if(cmB_From.Text.Length >= 3)
-            {
-                findStation(cmB_From.Text,cmB_From);
-            }
+            RemoveAllItem(cmB_From);
+            SendKeys.Send("{End}");
+            findStation(cmB_From.Text,cmB_From);
+            cmB_From.Select(1, cmB_From.SelectionLength);
+            cmB_From.DroppedDown = true;
         }
 
         void findStation(string input, ComboBox box)
@@ -36,36 +32,62 @@ namespace SwissTransportWinApp
 
             ITransport Test = new Transport();
             var stations = Test.GetStations(input);
-
-            bool found = false;           
+                        
+            if (stations.StationList.Any() == false)
+            {
+                RemoveAllItem(box);
+                return;
+            }
             foreach (Station s in stations.StationList)
             {
-                if (s.Name.Contains(input))
+                if (s.Name == null)
                 {
+                    RemoveItem(box, s.Name);
+                }
+                else if (s.Name.Contains(input))
+                {
+                    CompareCmbox(box, input, s.Name);
+                } 
+            }
+         
+        }
+        void CompareCmbox(ComboBox box, string input, string Name)
+        {
+            if (box.Items.Count <= 0)
+            {
+                addItem(box, Name);
+            }
+            else
+            {
+                bool existing = false;
 
-                    if (box.Items.Count <= 0)
+                for (int i = 0; i < box.Items.Count; i++)
+                {
+                    if (input == box.GetItemText(box.Items[i++]))
                     {
-                        box.Items.Add(s.Name);
+                        existing = true;
                     }
-                    else
-                    {
-
-                        for (int i = 0; i < box.Items.Count; i++)
-                        {
-                            if (input != box.GetItemText(box.Items[i]))
-                            {
-                                box.Items.Add(s.Name);
-                            }
-                        }
-                    }
-
-                    found = true;
+                }
+                if (!existing)
+                {
+                    addItem(box, Name);
                 }
             }
-            if (!found)
-            {
-                box.Items.Clear();
-            }
+
+
+        }
+
+        void addItem(ComboBox box, String Name)
+        {
+            box.Items.Add(Name);
+        }
+        void RemoveItem(ComboBox box, String Name)
+        {
+            box.Items.Remove(Name);
+        }
+        void RemoveAllItem(ComboBox box)
+        {
+            box.Items.Clear();
         }
     }
 }
