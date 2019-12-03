@@ -36,7 +36,7 @@
             this.lbx_to = new System.Windows.Forms.ListBox();
             this.txt_to = new System.Windows.Forms.TextBox();
             this.btn_search = new System.Windows.Forms.Button();
-            this.DateTime = new System.Windows.Forms.GroupBox();
+            this.Gp_DateTime = new System.Windows.Forms.GroupBox();
             this.input_date = new System.Windows.Forms.DateTimePicker();
             this.input_time = new System.Windows.Forms.DateTimePicker();
             this.picB_connection = new System.Windows.Forms.PictureBox();
@@ -48,9 +48,11 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
+            this.rB_Departure = new System.Windows.Forms.RadioButton();
+            this.rB_arrival = new System.Windows.Forms.RadioButton();
             this.gb_From.SuspendLayout();
             this.gb_to.SuspendLayout();
-            this.DateTime.SuspendLayout();
+            this.Gp_DateTime.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picB_connection)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcB_noConnection)).BeginInit();
             this.gb_input.SuspendLayout();
@@ -137,27 +139,32 @@
             this.btn_search.TabIndex = 6;
             this.btn_search.Text = "Search";
             this.btn_search.UseVisualStyleBackColor = true;
+            this.btn_search.Click += new System.EventHandler(this.Btn_search_Click);
             // 
-            // DateTime
+            // Gp_DateTime
             // 
-            this.DateTime.AutoSize = true;
-            this.DateTime.Controls.Add(this.input_date);
-            this.DateTime.Controls.Add(this.input_time);
-            this.DateTime.Location = new System.Drawing.Point(19, 199);
-            this.DateTime.MaximumSize = new System.Drawing.Size(0, 45);
-            this.DateTime.MinimumSize = new System.Drawing.Size(281, 45);
-            this.DateTime.Name = "DateTime";
-            this.DateTime.Size = new System.Drawing.Size(281, 45);
-            this.DateTime.TabIndex = 12;
-            this.DateTime.TabStop = false;
-            this.DateTime.Text = "Date and Time";
+            this.Gp_DateTime.AutoSize = true;
+            this.Gp_DateTime.Controls.Add(this.rB_arrival);
+            this.Gp_DateTime.Controls.Add(this.input_date);
+            this.Gp_DateTime.Controls.Add(this.input_time);
+            this.Gp_DateTime.Controls.Add(this.rB_Departure);
+            this.Gp_DateTime.Location = new System.Drawing.Point(22, 204);
+            this.Gp_DateTime.MaximumSize = new System.Drawing.Size(0, 70);
+            this.Gp_DateTime.MinimumSize = new System.Drawing.Size(281, 45);
+            this.Gp_DateTime.Name = "Gp_DateTime";
+            this.Gp_DateTime.Size = new System.Drawing.Size(281, 70);
+            this.Gp_DateTime.TabIndex = 12;
+            this.Gp_DateTime.TabStop = false;
+            this.Gp_DateTime.Text = "Departure";
             // 
             // input_date
             // 
+            this.input_date.CustomFormat = "dddd d.MMMM yyyy";
             this.input_date.Dock = System.Windows.Forms.DockStyle.Left;
+            this.input_date.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.input_date.Location = new System.Drawing.Point(3, 16);
             this.input_date.Name = "input_date";
-            this.input_date.Size = new System.Drawing.Size(200, 20);
+            this.input_date.Size = new System.Drawing.Size(191, 20);
             this.input_date.TabIndex = 4;
             // 
             // input_time
@@ -165,10 +172,10 @@
             this.input_time.CustomFormat = "hh:mm";
             this.input_time.Dock = System.Windows.Forms.DockStyle.Right;
             this.input_time.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.input_time.Location = new System.Drawing.Point(225, 16);
+            this.input_time.Location = new System.Drawing.Point(222, 16);
             this.input_time.Name = "input_time";
             this.input_time.ShowUpDown = true;
-            this.input_time.Size = new System.Drawing.Size(53, 20);
+            this.input_time.Size = new System.Drawing.Size(56, 20);
             this.input_time.TabIndex = 5;
             // 
             // picB_connection
@@ -190,14 +197,13 @@
             this.pcB_noConnection.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pcB_noConnection.TabIndex = 15;
             this.pcB_noConnection.TabStop = false;
-            this.pcB_noConnection.Click += new System.EventHandler(this.PcB_noConnection_Click);
             // 
             // lbx_connecntions
             // 
             this.lbx_connecntions.FormattingEnabled = true;
             this.lbx_connecntions.Location = new System.Drawing.Point(6, 19);
             this.lbx_connecntions.Name = "lbx_connecntions";
-            this.lbx_connecntions.Size = new System.Drawing.Size(188, 251);
+            this.lbx_connecntions.Size = new System.Drawing.Size(212, 251);
             this.lbx_connecntions.TabIndex = 16;
             // 
             // gb_input
@@ -207,7 +213,7 @@
             this.gb_input.Controls.Add(this.pcB_noConnection);
             this.gb_input.Controls.Add(this.picB_connection);
             this.gb_input.Controls.Add(this.gb_to);
-            this.gb_input.Controls.Add(this.DateTime);
+            this.gb_input.Controls.Add(this.Gp_DateTime);
             this.gb_input.Location = new System.Drawing.Point(2, 1);
             this.gb_input.Name = "gb_input";
             this.gb_input.Size = new System.Drawing.Size(418, 284);
@@ -219,7 +225,7 @@
             this.gb_Connections.Controls.Add(this.lbx_connecntions);
             this.gb_Connections.Location = new System.Drawing.Point(434, 1);
             this.gb_Connections.Name = "gb_Connections";
-            this.gb_Connections.Size = new System.Drawing.Size(200, 284);
+            this.gb_Connections.Size = new System.Drawing.Size(224, 284);
             this.gb_Connections.TabIndex = 18;
             this.gb_Connections.TabStop = false;
             this.gb_Connections.Text = "Connections";
@@ -244,7 +250,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(330, 310);
+            this.button3.Location = new System.Drawing.Point(346, 310);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(108, 51);
             this.button3.TabIndex = 21;
@@ -253,19 +259,43 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(486, 310);
+            this.button4.Location = new System.Drawing.Point(517, 310);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(108, 51);
             this.button4.TabIndex = 22;
             this.button4.Text = "button4";
             this.button4.UseVisualStyleBackColor = true;
             // 
+            // rB_Departure
+            // 
+            this.rB_Departure.AutoSize = true;
+            this.rB_Departure.Location = new System.Drawing.Point(6, 48);
+            this.rB_Departure.Name = "rB_Departure";
+            this.rB_Departure.Size = new System.Drawing.Size(72, 17);
+            this.rB_Departure.TabIndex = 16;
+            this.rB_Departure.TabStop = true;
+            this.rB_Departure.Text = "Departure";
+            this.rB_Departure.UseVisualStyleBackColor = true;
+            this.rB_Departure.CheckedChanged += new System.EventHandler(this.RB_Departure_CheckedChanged);
+            // 
+            // rB_arrival
+            // 
+            this.rB_arrival.AutoSize = true;
+            this.rB_arrival.Location = new System.Drawing.Point(97, 48);
+            this.rB_arrival.Name = "rB_arrival";
+            this.rB_arrival.Size = new System.Drawing.Size(54, 17);
+            this.rB_arrival.TabIndex = 17;
+            this.rB_arrival.TabStop = true;
+            this.rB_arrival.Text = "Arrival";
+            this.rB_arrival.UseVisualStyleBackColor = true;
+            this.rB_arrival.CheckedChanged += new System.EventHandler(this.RB_arrival_CheckedChanged);
+            // 
             // Connections
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(646, 394);
+            this.ClientSize = new System.Drawing.Size(670, 394);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
@@ -281,7 +311,8 @@
             this.gb_From.PerformLayout();
             this.gb_to.ResumeLayout(false);
             this.gb_to.PerformLayout();
-            this.DateTime.ResumeLayout(false);
+            this.Gp_DateTime.ResumeLayout(false);
+            this.Gp_DateTime.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picB_connection)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcB_noConnection)).EndInit();
             this.gb_input.ResumeLayout(false);
@@ -300,7 +331,7 @@
         private System.Windows.Forms.ListBox lbx_to;
         private System.Windows.Forms.TextBox txt_to;
         private System.Windows.Forms.Button btn_search;
-        private System.Windows.Forms.GroupBox DateTime;
+        private System.Windows.Forms.GroupBox Gp_DateTime;
         private System.Windows.Forms.DateTimePicker input_date;
         private System.Windows.Forms.DateTimePicker input_time;
         private System.Windows.Forms.PictureBox pcB_noConnection;
@@ -312,6 +343,8 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.RadioButton rB_arrival;
+        private System.Windows.Forms.RadioButton rB_Departure;
     }
 }
 
