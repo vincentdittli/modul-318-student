@@ -44,7 +44,9 @@
             this.cmB_From.Name = "cmB_From";
             this.cmB_From.Size = new System.Drawing.Size(121, 21);
             this.cmB_From.TabIndex = 0;
+            this.cmB_From.UseWaitCursor = true;
             this.cmB_From.TextChanged += new System.EventHandler(this.CmB_From_TextChanged);
+            this.cmB_From.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmB_From_KeyPress);
             // 
             // cmB_to
             // 
@@ -53,6 +55,7 @@
             this.cmB_to.Name = "cmB_to";
             this.cmB_to.Size = new System.Drawing.Size(121, 21);
             this.cmB_to.TabIndex = 1;
+            this.cmB_to.TextChanged += new System.EventHandler(this.cmB_to_TextChanged);
             // 
             // label1
             // 
@@ -113,6 +116,7 @@
             this.Controls.Add(this.cmB_From);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
